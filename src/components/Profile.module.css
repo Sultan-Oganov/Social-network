@@ -1,0 +1,16 @@
+.content {
+    grid-area: content;
+    background-color: greenyellow;
+    width: 100%;
+}
+.title {
+    font-size: 35px;
+    text-align: center;
+}
+.content img {
+    display: block;
+    width: 90%;
+}
+.item {
+    color: crimson;
+}

@@ -1,0 +1,18 @@
+.sidebar {
+    grid-area: sidebar;
+    background-color: gold;
+}
+.item {
+    color: forestgreen;
+    font-size: 20px;
+    text-decoration: none;
+}
+.item.active {
+    color: #f00;
+    font-size: 30px;
+}
+li {
+    text-decoration: none;
+    list-style: none;
+    margin: 0 0 10px 0;
+}

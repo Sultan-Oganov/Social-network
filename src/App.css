@@ -1,0 +1,7 @@
+.app-wrapper {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 1fr 6fr;
+  grid-template-areas: "header header" "sidebar content";
+  grid-gap: 10px;
+}
