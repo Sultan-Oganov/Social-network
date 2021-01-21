@@ -8,9 +8,5 @@
     text-align: center;
 }
 .content img {
-    display: block;
     width: 90%;
-}
-.item {
-    color: crimson;
 }

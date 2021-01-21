@@ -1,0 +1,14 @@
+.title {
+    color: green;
+    text-align: center;
+    font-size: 28px;
+}
+.item {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 10px;
+    color: crimson;
+}
+.item img {
+    width: 70px;
+}
