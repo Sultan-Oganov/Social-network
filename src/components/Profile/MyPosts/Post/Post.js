@@ -7,7 +7,7 @@ const Post = (props) => {
         <div className={classes.item}>
             <img src={props.img ? props.img : "https://st2.depositphotos.com/9223672/12056/v/950/depositphotos_120568228-stock-illustration-female-face-avatar-round-flat.jpg"} />
             {props.message}
-            {props.hi}
+            <div>{props.likes} likes</div>
 
             <span>Like</span>
         </div>
