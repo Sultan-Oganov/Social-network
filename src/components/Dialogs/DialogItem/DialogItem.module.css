@@ -10,3 +10,7 @@
 .dialog a {
     color: #000;
 }
+
+.dialog img {
+    width: 35px;
+}

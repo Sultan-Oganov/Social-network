@@ -1,11 +1,12 @@
 import React from 'react'
 import classes from './Post.module.css';
+import avatar from '../../../../img/defaultAvatar.jpg'
 
 const Post = (props) => {
     // console.log(props.message);
     return (
         <div className={classes.item}>
-            <img src={props.img ? props.img : "https://st2.depositphotos.com/9223672/12056/v/950/depositphotos_120568228-stock-illustration-female-face-avatar-round-flat.jpg"} />
+            <img src={props.img ? props.img : avatar} />
             {props.message}
             <div>{props.likes} likes</div>
 

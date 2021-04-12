@@ -6,35 +6,28 @@ import Message from './Message/Message'
 
 function Dialogs(props) {
 
-    // let dialogs = [
-    //     { name: 'Sultan', id: 1 },
-    //     { name: 'Adam', id: 2 },
-    //     { name: 'Usman', id: 3 },
-    //     { name: 'Emir', id: 4 },
-    //     { name: 'Ilim', id: 5 },
-    //     { name: 'Azamat', id: 6 },
-    //     { name: 'Kaira', id: 7 },
-    // ]
-
-    // let messages = [
-    //     { id: 1, message: 'Hey' },
-    //     { id: 2, message: 'Bye' },
-    //     { id: 3, message: 'How\'re u doing?' },
-    //     { id: 4, message: 'Yo' },
-    //     { id: 5, message: 'How\'re u doing?' },
-    // ]
-
-    let dialogsElements = props.dialogs.map(dialog => {
+    let dialogsElements = props.dialogsPage.dialogs.map(dialog => {
         return (
-            <DialogItem name={dialog.name} id={dialog.id} />
+            <DialogItem ava={dialog.ava} name={dialog.name} id={dialog.id} />
         )
     })
 
-    let messagesElements = props.messages.map(message => {
+    let messagesElements = props.dialogsPage.messages.map(message => {
         return (
             <Message id={message.id} message={message.message} />
         )
     })
+
+    let newMessage = React.createRef()
+
+    let addMessage = () => {
+        props.dispatch({ type: 'ADD-MESSAGE' })
+    }
+
+    let updateNewMessageText = () => {
+        let text = newMessage.current.value
+        props.dispatch({ type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text })
+    }
 
     return (
         <div className={classes.dialogs}>
@@ -45,6 +38,9 @@ function Dialogs(props) {
             <div className={classes.messages}>
                 {messagesElements}
             </div>
+            <button onClick={addMessage}>Sent Message</button>
+            <textarea onChange={updateNewMessageText} ref={newMessage} value={props.dialogsPage.newMessagesText}></textarea>
+
         </div>
     )
 }

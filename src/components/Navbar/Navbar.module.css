@@ -1,4 +1,4 @@
-.sidebar {
+.navbar {
     grid-area: sidebar;
     background-color: gold;
 }
@@ -11,8 +11,18 @@
     color: #f00;
     /* font-size: 30px; */
 }
+.navbar ul {
+}
 li {
     text-decoration: none;
     list-style: none;
     margin: 0 0 10px 0;
+}
+.friends {
+    display: flex;
+    justify-content: space-between;
+}
+.friends img {
+    width: 50px;
+    border-radius: 50%;
 }

@@ -6,11 +6,14 @@ import img from '../../img/ava.jpg'
 
 
 const Profile = (props) => {
-
     return (
         <div className={classes.content}>
             <ProfileInfo />
-            <MyPosts posts={props.posts} />
+            <MyPosts
+                posts={props.profilePage.posts}
+                newPostText={props.profilePage.newPostText}
+                dispatch={props.dispatch}
+            />
         </div>
     );
 }
