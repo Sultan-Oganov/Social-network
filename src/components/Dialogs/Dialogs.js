@@ -1,8 +1,8 @@
 import React from 'react'
 import classes from './Dialogs.module.css'
-import { NavLink } from 'react-router-dom'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state'
 
 function Dialogs(props) {
 
@@ -21,12 +21,13 @@ function Dialogs(props) {
     let newMessage = React.createRef()
 
     let addMessage = () => {
-        props.dispatch({ type: 'ADD-MESSAGE' })
+        props.dispatch(addMessageActionCreator())
     }
 
     let updateNewMessageText = () => {
         let text = newMessage.current.value
-        props.dispatch({ type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text })
+        let action = updateNewMessageTextActionCreator(text)
+        props.dispatch(action)
     }
 
     return (

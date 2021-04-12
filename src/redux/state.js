@@ -6,7 +6,6 @@ import a4 from '../img/4.jpg'
 import a5 from '../img/5.png'
 import a6 from '../img/6.jpg'
 import a7 from '../img/7.png'
-import { act } from 'react-dom/test-utils'
 
 let store = {
 
@@ -81,7 +80,7 @@ let store = {
         this._callSubscriber(this._state)
     },
 
-    //==================MESSAGES=================
+    //==================Dialogs=================
     addMessage() {
         let newMessage = {
             id: this._state.dialogsPage.messages.length + 1,
@@ -96,7 +95,7 @@ let store = {
         this._state.dialogsPage.newMessagesText = newText
         this._callSubscriber(this._state)
     },
-    //==================Dispatch=================
+    //==================Dispatch================
     dispatch(action) {         //{ type: 'ADD-POST' }   
         if (action.type === 'ADD-POST') {
             let newPost = {
@@ -126,6 +125,36 @@ let store = {
             this._state.dialogsPage.newMessagesText = action.newText
             this._callSubscriber(this._state)
         }
+    }
+}
+
+//============Profile-Action-Creator================
+
+export const addPostActionCreator = () => {
+    return {
+        type: 'ADD-POST',
+    }
+}
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text,
+    }
+}
+
+//============Dialogs-Action-Creator================
+
+export const addMessageActionCreator = () => {
+    return {
+        type: 'ADD-MESSAGE',
+    }
+}
+
+export const updateNewMessageTextActionCreator = (text) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newText: text,
     }
 }
 
