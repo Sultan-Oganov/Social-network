@@ -6,6 +6,9 @@ import a4 from '../img/4.jpg'
 import a5 from '../img/5.png'
 import a6 from '../img/6.jpg'
 import a7 from '../img/7.png'
+import profileReducer from './reducers/profile-reducer'
+import sidebarReducer from './reducers/sidebar-reducer'
+import dialogsReducer from './reducers/dialogs-reducer'
 
 let store = {
 
@@ -39,7 +42,7 @@ let store = {
                 { id: 4, message: 'Yo' },
                 { id: 5, message: 'How\'re u doing?' },
             ],
-            newMessagesText: 'hey'
+            newMessagesBody: ''
         },
         sidebar: {
             friends: [
@@ -61,100 +64,15 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer;          // Паттерн Observer
     },
-
-    //==================PROFILE=================
-    addPost() {
-        let newPost = {
-            id: this._state.profilePage.posts.length + 1,
-            message: this._state.profilePage.newPostText,
-            img: '',
-            likes: 0,
-        }
-
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-
-    //==================Dialogs=================
-    addMessage() {
-        let newMessage = {
-            id: this._state.dialogsPage.messages.length + 1,
-            message: this._state.dialogsPage.newMessagesText,
-        }
-
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessagesText = ''
-        this._callSubscriber(this._state)
-    },
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessagesText = newText
-        this._callSubscriber(this._state)
-    },
     //==================Dispatch================
-    dispatch(action) {         //{ type: 'ADD-POST' }   
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: this._state.profilePage.posts.length + 1,
-                message: this._state.profilePage.newPostText,
-                img: '',
-                likes: 0,
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        }
-        else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {
-                id: this._state.dialogsPage.messages.length + 1,
-                message: this._state.dialogsPage.newMessagesText,
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessagesText = ''
-            this._callSubscriber(this._state)
-        }
-        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessagesText = action.newText
-            this._callSubscriber(this._state)
-        }
-    }
-}
+    dispatch(action) {         //{ type: 'ADD-POST' } 
 
-//============Profile-Action-Creator================
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-export const addPostActionCreator = () => {
-    return {
-        type: 'ADD-POST',
-    }
-}
+        this._callSubscriber(this._state)
 
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text,
-    }
-}
-
-//============Dialogs-Action-Creator================
-
-export const addMessageActionCreator = () => {
-    return {
-        type: 'ADD-MESSAGE',
-    }
-}
-
-export const updateNewMessageTextActionCreator = (text) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newText: text,
     }
 }
 
