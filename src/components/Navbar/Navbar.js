@@ -15,6 +15,8 @@ const Navbar = (props) => {
         )
     })
 
+    // let friends = [1, 2, 3]
+
     return (
         <nav className={classes.navbar}>
             <ul>
