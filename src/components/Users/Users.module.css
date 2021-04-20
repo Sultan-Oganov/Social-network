@@ -1,0 +1,52 @@
+.users {
+    width: 95%;
+    margin: 50px auto;
+}
+.user {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 0px 0px 10px 0px;
+}
+.leftBlock {
+    flex: 0 1 20%;
+}
+.userAva {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0px 0px 10px 0px;
+}
+.userAva img {
+    width: 100%;
+}
+.btn {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+.rightBlock {
+    flex: 0 1 75%;
+    display: flex;
+    justify-content: space-between;
+}
+.about_user {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.userName {
+    font-size: 25px;
+    color: #f00;
+}
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

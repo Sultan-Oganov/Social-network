@@ -3,14 +3,15 @@ import { Route } from 'react-router';
 import classes from './App.css';
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
-import Navbar from './components/Navbar/Navbar';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import NavbarContainer from './components/Navbar/NavbarContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Navbar />
+      <NavbarContainer />
 
       <div className="app-wrapper-content">
 
@@ -23,6 +24,11 @@ const App = (props) => {
           exact
           path="/dialogs"
           render={() => <DialogsContainer />}
+        />
+        <Route
+          exact
+          path="/users"
+          render={() => <UsersContainer />}
         />
 
       </div>
