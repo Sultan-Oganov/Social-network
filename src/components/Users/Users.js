@@ -4,16 +4,19 @@ import * as axios from 'axios'
 import defaultAva from '../../img/1.jpg'
 
 let Users = (props) => {
-    if (props.users.length === 0) {
 
-        axios
-            .get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => props.setUsers(response.data.items))
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios
+                .get('https://social-network.samuraijs.com/api/1.0/users')
+                .then(response => props.setUsers(response.data.items))
+        }
     }
+
 
     return (
         <div className={classes.users}>
-
+            <button onClick={getUsers}>GetUsers</button>
             {props.users.map(user => {
                 return (
                     <div className={classes.user} key={user.id}>
