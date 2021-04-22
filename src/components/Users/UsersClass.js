@@ -5,22 +5,54 @@ import defaultAva from '../../img/1.jpg'
 
 class UsersClass extends React.Component {
 
-    constructor(props) {
-        super(props)
-
+    componentDidMount() {
         axios
-            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
+    }
+
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber)
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => this.props.setUsers(response.data.items))
     }
 
     render() {
+
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+
+        let pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+
+            pages.push(i)
+
+        }
+
         return (
             <div className={classes.users}>
+                <div className={classes.pagination}>
+                    {
+                        pages.map(page => {
+                            return (
+                                <span
+                                    key={page}
+                                    className={this.props.currentPage === page ? classes.selectedPage : ''}
+                                    onClick={(event) => this.onPageChanged(page)}>
+                                    {page}
+                                </span>
+                            )
+                        })
+                    }
+                </div>
                 {
                     this.props.users.map(user => {
                         return (
                             <div className={classes.user} key={user.id}>
-                                <span className={classes.leftBlock}>
+                                <div className={classes.leftBlock}>
                                     <div className={classes.userAva}>
                                         <img src={user.photos.small !== null ? user.photos.small : defaultAva} alt="" />
                                     </div>
@@ -29,9 +61,9 @@ class UsersClass extends React.Component {
                                         :
                                         <button onClick={() => this.props.follow(user.id)} className={classes.btn}>Follow</button>
                                     }
-                                </span>
+                                </div>
 
-                                <span className={classes.rightBlock}>
+                                <div className={classes.rightBlock}>
                                     <span className={classes.about_user}>
                                         <div className={classes.userName}>{user.name}</div>
                                         <div>{user.status}</div>
@@ -40,7 +72,7 @@ class UsersClass extends React.Component {
                                         <div>{'user.location.country'}</div>
                                         <div>{'user.location.city'}</div>
                                     </span>
-                                </span>
+                                </div>
                             </div>
                         )
                     })

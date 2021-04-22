@@ -54,3 +54,15 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.pagination span {
+    font-size: 18px !important;
+    font-weight: 500px;
+    display: inline-block;
+    margin: 0px 20px 0 0;
+    color: red;
+    cursor: pointer;
+}
+.selectedPage {
+    font-weight: 900;
+    font-size: 20px;
+}
