@@ -39,7 +39,7 @@ let initialState = {
         //     location: { city: 'Tokyo', country: 'Japan' }
         // },
     ],
-    pageSize: 100,
+    pageSize: 50,
     totalUsersCount: 0,
     currentPage: 1,
 }
