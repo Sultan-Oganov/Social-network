@@ -11,6 +11,7 @@ const MyPosts = (props) => {
                 img={post.img}
                 id={post.id}
                 likes={post.likes}
+                key={post.id}
             />
         )
     })

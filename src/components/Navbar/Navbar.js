@@ -16,7 +16,7 @@ const Navbar = (props) => {
     return (
         <nav className={classes.navbar} >
             <ul>
-                <li><NavLink exact activeClassName={classes.activeLink} className={classes.item} to="/">Profile</NavLink></li>
+                <li><NavLink exact activeClassName={classes.activeLink} className={classes.item} to="/profile">Profile</NavLink></li>
                 <li><NavLink exact activeClassName={classes.activeLink} className={classes.item} to="/dialogs">Messages</NavLink></li>
                 <li><NavLink exact activeClassName={classes.activeLink} className={classes.item} to="/news">News</NavLink></li>
                 <li><NavLink exact activeClassName={classes.activeLink} className={classes.item} to="/music">Music</NavLink></li>

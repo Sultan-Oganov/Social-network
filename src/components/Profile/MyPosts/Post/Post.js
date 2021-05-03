@@ -3,7 +3,6 @@ import classes from './Post.module.css';
 import avatar from '../../../../img/defaultAvatar.jpg'
 
 const Post = (props) => {
-    // console.log(props.message);
     return (
         <div className={classes.item}>
             <img src={props.img ? props.img : avatar} />

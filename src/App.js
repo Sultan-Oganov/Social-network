@@ -6,6 +6,7 @@ import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 const App = (props) => {
   return (
@@ -16,20 +17,22 @@ const App = (props) => {
       <div className="app-wrapper-content">
 
         <Route
-          exact
-          path="/"
-          render={() => <Profile />}
+          path="/profile"
+          render={() => <ProfileContainer />}
         />
         <Route
-          exact
           path="/dialogs"
           render={() => <DialogsContainer />}
         />
         <Route
-          exact
           path="/users"
           render={() => <UsersContainer />}
         />
+        {/* <Route
+          exact
+          path="/"
+          render={() => <ProfileContainer />}
+        /> */}
 
       </div>
 

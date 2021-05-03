@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './Users.module.css'
-import defaultAva from '../../img/1.jpg'
+import defaultAva from '../../img/3.jpg'
+import { Link } from 'react-router-dom'
 
 let Users = (props) => {
 
@@ -34,9 +35,9 @@ let Users = (props) => {
                     return (
                         <div className={classes.user} key={user.id}>
                             <div className={classes.leftBlock}>
-                                <div className={classes.userAva}>
+                                <Link to={'/profile/' + user.id} className={classes.userAva}>
                                     <img src={user.photos.small !== null ? user.photos.small : defaultAva} alt="" />
-                                </div>
+                                </Link>
                                 {user.followed ?
                                     <button onClick={() => props.unfollow(user.id)} className={classes.btn}>Unfollow</button>
                                     :
