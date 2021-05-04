@@ -17,7 +17,7 @@ const App = (props) => {
       <div className="app-wrapper-content">
 
         <Route
-          path="/profile"
+          path="/profile/:userId?"
           render={() => <ProfileContainer />}
         />
         <Route
@@ -28,11 +28,6 @@ const App = (props) => {
           path="/users"
           render={() => <UsersContainer />}
         />
-        {/* <Route
-          exact
-          path="/"
-          render={() => <ProfileContainer />}
-        /> */}
 
       </div>
 

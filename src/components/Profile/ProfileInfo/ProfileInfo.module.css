@@ -5,3 +5,18 @@
 img {
     width: 90%;
 }
+.userPhoto {
+    width: 200px !important;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin: 50px 0 0 0;
+}
+.userName {
+    font-size: 20px;
+    display: block;
+    width: 20%;
+    border: 1px solid #000;
+    background-color: yellowgreen;
+    text-align: center;
+    padding: 10px;
+}

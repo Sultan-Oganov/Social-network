@@ -14,9 +14,12 @@ const ProfileInfo = (props) => {
 
             <div>
                 <img
-                    style={{ width: '400px' }}
+                    className={classes.userPhoto}
                     src={props.profile.photos.large}
                     alt="" />
+                <div className={classes.userName}>
+                    <b>Name:<em>{props.profile.fullName}</em></b>
+                </div>
             </div>
         </>
     )
