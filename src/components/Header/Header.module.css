@@ -1,0 +1,17 @@
+.header {
+    grid-area: header;
+    background-color: forestgreen;
+    display: flex;
+    justify-content: space-between;
+}
+.header img {
+    width: 50px;
+}
+.loginBlock {
+}
+
+.loginBlock a {
+    color: #fff;
+    font-size: 18px;
+    margin: 10px;
+}

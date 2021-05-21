@@ -1,6 +1,7 @@
 .navbar {
     grid-area: sidebar;
     background-color: gold;
+    height: 100vh;
 }
 .item {
     color: forestgreen;
