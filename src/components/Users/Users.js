@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './Users.module.css'
 import defaultAva from '../../img/3.jpg'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 let Users = (props) => {
 
@@ -39,9 +40,44 @@ let Users = (props) => {
                                     <img src={user.photos.small !== null ? user.photos.small : defaultAva} alt="" />
                                 </Link>
                                 {user.followed ?
-                                    <button onClick={() => props.unfollow(user.id)} className={classes.btn}>Unfollow</button>
+                                    <button
+                                        onClick={() => {
+
+                                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                                withCredentials: true,
+                                                headers: {
+                                                    "API-KEY": "ab28184b-a0e6-4bd0-9a32-fe14a8aaa13c"
+                                                }
+                                            })
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.unfollow(user.id)
+                                                    }
+                                                })
+                                        }}
+                                        className={classes.btn}>
+                                        Unfollow
+                                    </button>
                                     :
-                                    <button onClick={() => props.follow(user.id)} className={classes.btn}>Follow</button>
+                                    <button
+                                        onClick={() => {
+
+                                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                                withCredentials: true,
+                                                headers: {
+                                                    "API-KEY": "ab28184b-a0e6-4bd0-9a32-fe14a8aaa13c"
+                                                }
+                                            })
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.follow(user.id)
+                                                    }
+                                                })
+
+                                        }}
+                                        className={classes.btn}>
+                                        Follow
+                                    </button>
                                 }
                             </div>
 
@@ -59,7 +95,7 @@ let Users = (props) => {
                     )
                 })
             }
-        </div>
+        </div >
     )
 }
 
