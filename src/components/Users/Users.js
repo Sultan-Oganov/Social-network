@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Users.module.css'
-import defaultAva from '../../img/3.jpg'
+import defaultAva from '../../img/4.jpg'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
