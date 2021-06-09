@@ -1,3 +1,4 @@
+import { usersAPI } from "../../api/api"
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -7,40 +8,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     avaUrl: 'https://media-exp1.licdn.com/dms/image/C5622AQH32m5gDbnn5g/feedshare-shrink_800/0/1601896044130?e=1619654400&v=beta&t=xX8SiRZbgV1JLpYYs6bcdQrB9cIWlC0J20DUX3KZPTU',
-        //     followed: true,
-        //     fullName: 'Sultan',
-        //     status: 'I am a boss',
-        //     location: { city: 'Bishkek', country: 'Kyrgzstan' }
-        // },
-        // {
-        //     id: 2,
-        //     avaUrl: 'https://videourokiprogrammirovanie.ru/upload/000/u0/0/c/0c5e7750.jpg',
-        //     followed: false,
-        //     fullName: 'Dmitry',
-        //     status: 'I am looking for a Job right now',
-        //     location: { city: 'Moscow', country: 'Russia' }
-        // },
-        // {
-        //     id: 3,
-        //     avaUrl: 'https://static-cdn.jtvnw.net/jtv_user_pictures/95f080c5-d5a9-4659-944c-091b7a2bb91c-profile_image-300x300.png',
-        //     followed: false,
-        //     fullName: 'Ilya',
-        //     status: 'I like a football!!!',
-        //     location: { city: 'Kiev', country: 'Ukraine' }
-        // },
-        // {
-        //     id: 4,
-        //     avaUrl: 'https://ae01.alicdn.com/kf/HTB1cQupitnJ8KJjSszdq6yxuFXaK/-.jpg',
-        //     followed: true,
-        //     fullName: 'Kiyoko',
-        //     status: 'I am so pretty',
-        //     location: { city: 'Tokyo', country: 'Japan' }
-        // },
-    ],
+    users: [],
     pageSize: 50,
     totalUsersCount: 0,
     currentPage: 1,
@@ -103,12 +71,51 @@ const usersReducer = (state = initialState, action) => {
     }
 
 }
-export const follow = (userId) => ({ type: FOLLOW, userId })
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
+
+export const followSuccess = (userId) => ({ type: FOLLOW, userId })
+export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowinProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+        })
+    }
+}
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowinProgress(true, userId))
+        usersAPI.follow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(toggleFollowinProgress(false, userId))
+            })
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowinProgress(true, userId))
+        usersAPI.unfollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(toggleFollowinProgress(false, userId))
+            })
+    }
+}
 
 export default usersReducer
