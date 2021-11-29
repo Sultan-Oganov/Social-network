@@ -4,7 +4,6 @@ import classes from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
-
     if (!props.profile) {
         return <Preloader />
     }
@@ -12,13 +11,16 @@ const ProfileInfo = (props) => {
         <>
             {/* <h1 className={classes.title}>Main Content</h1>
             <img src="https://get-edu.kz/wp-content/uploads/2020/04/helpbox-contact.jpg" alt="wallpaper" />
-*/}
+            */}
             <div className={classes.descriptionBlock}>
-                <img
-                    className={classes.userPhoto}
-                    src={props.profile.photos.large}
-                    alt="" />
-                <ProfileStatus status={'Hello MF'} />
+                {
+                    props.profile.photos.large && <img
+                        className={classes.userPhoto}
+                        src={props.profile.photos.large}
+                        alt="" />
+                }
+
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
             </div>
             {/* 
             <div className={classes.userName}>
