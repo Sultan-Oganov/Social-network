@@ -2,8 +2,6 @@ import React from 'react'
 import classes from './Users.module.css'
 import defaultAva from '../../img/4.jpg'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { usersAPI } from '../../api/api'
 
 let Users = (props) => {
 
