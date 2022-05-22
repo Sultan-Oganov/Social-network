@@ -8,8 +8,8 @@ const LoginForm = ({ handleSubmit }) => {
         <form onSubmit={handleSubmit}>
             <Field
                 className='form__input'
-                placeholder='Login'
-                name='login'
+                placeholder='Email'
+                name='email'
                 component={Input}
                 validate={required}
             />
