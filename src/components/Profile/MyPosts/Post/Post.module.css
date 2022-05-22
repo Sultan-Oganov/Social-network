@@ -2,8 +2,9 @@
     font-size: 19px;
     font-weight: 700;
     margin: 10px;
-    color: crimson;
+    color: #000;
 }
+
 .item span {
     color: blueviolet;
     border: 1px solid #000;
@@ -12,6 +13,7 @@
     display: inline-block;
     margin: 0 0 0 10px;
 }
+
 .item img {
     width: 70px !important;
     border-radius: 40px;
