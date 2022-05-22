@@ -5,7 +5,6 @@ import a4 from '../../img/4.jpg'
 import a5 from '../../img/5.png'
 import a6 from '../../img/6.jpg'
 import a7 from '../../img/7.png'
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let initialState = {
@@ -25,22 +24,15 @@ let initialState = {
         { id: 4, message: 'Yo' },
         { id: 5, message: 'How\'re u doing?' },
     ],
-    newMessagesBody: ''
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SEND_MESSAGE:
-            let body = state.newMessagesBody
+            let body = action.newMessagesBody
             return {
                 ...state,
-                newMessagesBody: '',
                 messages: [...state.messages, { id: state.messages.length + 1, message: body, }]
-            }
-        case UPDATE_NEW_MESSAGE_BODY:
-            return {
-                ...state,
-                newMessagesBody: action.body
             }
         default:
             return state
@@ -48,16 +40,10 @@ const dialogsReducer = (state = initialState, action) => {
 
 }
 
-export const sendMessageActionCreator = () => {
+export const sendMessageActionCreator = (newMessagesBody) => {
     return {
         type: SEND_MESSAGE,
-    }
-}
-
-export const updateNewMessageBodyActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body: text,
+        newMessagesBody
     }
 }
 
