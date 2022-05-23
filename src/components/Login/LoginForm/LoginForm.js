@@ -2,8 +2,9 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Input } from '../../common/FormsControl/FormsControl';
 import { required } from '../../../utils/validators/index';
+import styles from '../../common/FormsControl/FormsControl.module.css'
 
-const LoginForm = ({ handleSubmit }) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
         <form onSubmit={handleSubmit}>
             <Field
@@ -24,6 +25,11 @@ const LoginForm = ({ handleSubmit }) => {
                 <Field name='rememberMe' component={Input} type="checkbox" />
                 <span className='form__text'>remember me</span>
             </label>
+
+            {error && <div className={styles.form__summaryError}>
+                {error}
+            </div>}
+
             <button className='form__btn form__signup'>Login</button>
         </form>
     );

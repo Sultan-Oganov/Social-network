@@ -8,3 +8,10 @@
     display: block;
     color: #f00;
 }
+
+.form__summaryError {
+    border: 2px solid #f00;
+    color: #f00;
+    padding: 5px;
+    margin: 10px 0 0;
+}
