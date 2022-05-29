@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import AddNewPostReduxForm from './AddPostForm/AddPostForm';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = (props) => {
+const MyPosts = memo((props) => {
 
     let postsElement = props.posts.map(post => {
         return (
@@ -30,6 +30,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-}
+})
 
 export default MyPosts;
